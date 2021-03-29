@@ -69,7 +69,7 @@ body {
     right: 0;
 }
 
-.other-option > button {
+.other-option button {
     width: 100px;
     height: 30px;
     line-height: 30px;
