@@ -1,11 +1,19 @@
 $(function () {
 
+    let repeatSend = false;
+
+    let timer = null;
+
+
     $("#registerButton").on("click", function () {
         let realName = $("#realName").val();
         let password = $("#password").val();
         let confirmPassword = $("#confirmPassword").val();
         let email = $("#email").val();
         let verificationCode = $("#verificationCode").val();
+
+        console.log(verificationCode);
+        console.log(getVerificationCode());
 
         if (realName === null || realName === "" || realName.length < 2) {
             $.alert({
@@ -42,17 +50,35 @@ $(function () {
 
     });
 
+    $("#sendVerificationCode").on("click", function () {
+        if (!repeatSend) {
+            repeatSend = true;
+            timer = setTimeout(function () {
+                repeatSend = false;
+            }, 10 * 1000);
+        } else {
+            $.alert({
+                title: "提醒",
+                content: "操作频繁"
+            });
+        }
+
+
+    });
+
 
 });
 
 function getVerificationCode() {
     let verificationCode = "";
     $.ajax({
-        url: "",
+        url: "http://localhost:8080/getVerificationCode",
         method: "GET",
-        async: true,
+        async: false,
         success: function (result) {
             verificationCode = result;
+            console.log(result);
+            console.log("获取到的验证码是：" + result);
         }
     });
 
