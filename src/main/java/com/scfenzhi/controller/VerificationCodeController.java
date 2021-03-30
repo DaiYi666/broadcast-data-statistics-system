@@ -29,8 +29,4 @@ public class VerificationCodeController {
         return verificationCode == null ? "" : verificationCode.toString();
     }
 
-
-    public void test(HttpServletRequest request){
-
-    }
 }

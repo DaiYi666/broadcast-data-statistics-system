@@ -11,7 +11,7 @@ public class FilterConfig {
     public FilterRegistrationBean<EquipmentFilter> reqResFilter() {
         FilterRegistrationBean<EquipmentFilter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new EquipmentFilter());
-        filterRegistrationBean.addUrlPatterns("/*");//配置过滤规则 　　　　 return filterRegistrationBean;
+        filterRegistrationBean.addUrlPatterns("/");//配置过滤规则 　　　　 return filterRegistrationBean;
         return filterRegistrationBean;
     }
 }
