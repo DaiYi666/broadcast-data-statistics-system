@@ -12,7 +12,7 @@
     <div class="wrap">
         <div>
             <label>
-                <input type="text" maxlength="4" id="realName" autocomplete="off" placeholder="请输入您的真实姓名">
+                <input type="email" maxlength="32" id="email" autocomplete="off" placeholder="请输入邮箱">
             </label>
         </div>
 
@@ -30,16 +30,10 @@
 
         <div>
             <label>
-                <input type="email" maxlength="32" id="email" autocomplete="off" placeholder="请输入邮箱">
-            </label>
-        </div>
-
-        <div>
-            <label>
                 <input type="text" maxlength="5" id="verificationCode" autocomplete="off" placeholder="请输入验证码">
             </label>
 
-            <a href="#" id="sendVerificationCode">发送验证码</a>
+            <span id="sendVerificationCode">发送验证码</span>
         </div>
 
 
@@ -50,8 +44,12 @@
     </div>
 
     <div class="other-option">
-        <a href="#"><button>忘记密码</button></a>
-        <a href="index.html"><button>已有账号</button></a>
+        <a href="#">
+            <button>忘记密码</button>
+        </a>
+        <a href="index.html">
+            <button>已有账号</button>
+        </a>
     </div>
 </div>
 </body>

@@ -3,7 +3,7 @@ package com.scfenzhi.controller;
 import com.scfenzhi.utils.EmailSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -16,8 +16,8 @@ public class VerificationCodeController {
     @Resource
     private EmailSender emailSender;
 
-    @GetMapping("/sendVerificationCode")
-    public void sendVerificationCode(@RequestParam("emailAddress") String emailAddress, HttpSession session) {
+    @PostMapping("/sendVerificationCode")
+    public void sendVerificationCode(String emailAddress, HttpSession session) {
         String verificationCode = emailSender.sendEmailVerificationCode(emailAddress);
         session.setAttribute("verificationCode", verificationCode);
     }

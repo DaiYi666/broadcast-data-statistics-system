@@ -1,5 +1,9 @@
+server:
+  port: 80
+
 spring:
   mail:
+    port: 465
     host: smtp.qq.com
     username: 484201132@qq.com
     password: xxrqatlwqpxlbjjb
