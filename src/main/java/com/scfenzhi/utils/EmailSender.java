@@ -33,7 +33,7 @@ public class EmailSender {
             email.setFrom(sender);
             email.setTo(emailAddress);
             email.setSubject("邮件验证码");
-            String content = String.format("尊敬的用户：您好！你的验证码是：%s，如非本人操作，请忽略。", verificationCode);
+            String content = String.format("尊敬的用户：您好！您的验证码是：%s，如非本人操作，请忽略。", verificationCode);
             email.setText(content);
             mailSender.send(email);
         }).start();

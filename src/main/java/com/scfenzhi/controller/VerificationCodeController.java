@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -26,5 +27,10 @@ public class VerificationCodeController {
     public String getVerificationCode(HttpSession session) {
         Object verificationCode = session.getAttribute("verificationCode");
         return verificationCode == null ? "" : verificationCode.toString();
+    }
+
+
+    public void test(HttpServletRequest request){
+
     }
 }

@@ -68,7 +68,7 @@ $(function () {
 function getVerificationCode() {
     let verificationCode = "";
     $.ajax({
-        url: "http://localhost:8080/getVerificationCode",
+        url: "/getVerificationCode",
         method: "GET",
         async: false,
         success: function (result) {
@@ -81,7 +81,7 @@ function getVerificationCode() {
 
 function sendVerificationCode(emailAddress) {
     $.ajax({
-        url: "http://localhost:8080/sendVerificationCode",
+        url: "/sendVerificationCode",
         data: {"emailAddress": emailAddress},
         method: "POST"
     });
