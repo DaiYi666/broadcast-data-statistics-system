@@ -84,3 +84,12 @@ function getVerificationCode() {
 
     return verificationCode;
 }
+
+
+function sendVerificationCode(emailAddress) {
+    $.ajax({
+        url: "http://localhost:8080/sendVerificationCode",
+        data: JSON.stringify({"emailAddress": emailAddress}),
+        method: "GET"
+    });
+}

@@ -1,15 +1,30 @@
 package com.scfenzhi.controller;
 
+import com.scfenzhi.utils.EmailSender;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @RestController
+@Slf4j
 public class VerificationCodeController {
 
+    @Resource
+    private EmailSender emailSender;
+
+    @GetMapping("/sendVerificationCode")
+    public void sendVerificationCode(@RequestParam("emailAddress") String emailAddress, HttpSession session) {
+        String verificationCode = emailSender.sendEmailVerificationCode(emailAddress);
+        session.setAttribute("verificationCode", verificationCode);
+    }
+
     @GetMapping("/getVerificationCode")
-    public String getVerificationCode() {
-        return UUID.randomUUID().toString().substring(0, 5);
+    public String getVerificationCode(HttpSession session) {
+        Object verificationCode = session.getAttribute("verificationCode");
+        return verificationCode == null ? "" : verificationCode.toString();
     }
 }
