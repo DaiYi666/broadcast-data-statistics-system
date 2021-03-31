@@ -1,0 +1,16 @@
+.navigation {
+    /*height: 100px;*/
+    /*line-height: 100px;*/
+    /*background-color: seashell;*/
+    /*overflow: hidden;*/
+}
+
+.menu {
+    height: 850px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#comprehensiveThisMonth {
+    height: 850px;
+    /*background-color: skyblue;*/
+}

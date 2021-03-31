@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author DaiYi
@@ -21,8 +22,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/authentication")
-    public CommonResult<Boolean> authentication(@RequestBody User user) {
-        return userService.authentication(user);
+    public CommonResult<Boolean> authentication(@RequestBody User user, HttpSession session) {
+        return userService.authentication(user,session);
     }
 
     @PostMapping("/addUser")

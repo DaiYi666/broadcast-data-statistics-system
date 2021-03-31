@@ -3,15 +3,15 @@ $(function () {
 
         let email = $("#email").val();
         let password = $("#password").val();
-        if (email === null || email === "") {
+        if (email === null || email === "" || !validateEmail(email)) {
             $.alert({
                 title: "提醒",
-                content: "请输入您的邮箱"
+                content: "请输入正确的的邮箱"
             });
-        } else if (password === null || password === "") {
+        } else if (password === null || password === "" || password.length < 6) {
             $.alert({
                 title: "提醒",
-                content: "请输入密码"
+                content: "请输入正确的密码"
             });
         } else {
             $.ajax({
@@ -23,8 +23,7 @@ $(function () {
                 async: false,
                 success: function (result) {
                     if (result.responseCode === ResponseCode.AUTHENTICATION_SUCCESSFUL) {
-                        alert("登录成功");
-                        location.href = "https://www.baidu.com";
+                        location.href = "/admin/dataDisplayBoard.html";
                     } else if (result.responseCode === ResponseCode.AUTHENTICATION_FAILED) {
                         $.dialog({
                             title: "错误",

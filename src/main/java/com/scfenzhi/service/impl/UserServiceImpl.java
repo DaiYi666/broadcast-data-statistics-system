@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author DaiYi
@@ -21,13 +22,14 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public CommonResult<Boolean> authentication(User user) {
+    public CommonResult<Boolean> authentication(User user, HttpSession session) {
         CommonResult<Boolean> responseResult = new CommonResult<>();
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         boolean isPassed = userMapper.authentication(user);
         if (isPassed) {
             responseResult.setResponseCode(ResponseCode.AUTHENTICATION_SUCCESSFUL);
             responseResult.setData(true);
+            session.setAttribute("user", user);
         } else {
             responseResult.setResponseCode(ResponseCode.AUTHENTICATION_FAILED);
         }
