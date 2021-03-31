@@ -1,8 +1,7 @@
 package com.scfenzhi.service;
 
+import com.scfenzhi.pojo.CommonResult;
 import com.scfenzhi.pojo.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author DaiYi
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface UserService {
 
-    Integer authentication(User user);
+    CommonResult<Boolean> authentication(User user);
 
-    Integer addUser(User user);
+    CommonResult<Integer> addUser(User user);
 
 }

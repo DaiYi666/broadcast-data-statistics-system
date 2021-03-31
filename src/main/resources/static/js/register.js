@@ -32,9 +32,31 @@ $(function () {
                 content: "验证码不正确"
             });
         } else {
-            $.alert({
-                title: "温馨提示",
-                content: "如果您是管理员用户，注册后请联系代毅把您的账户身份切换为管理员"
+            $.ajax({
+                url: "/addUser",
+                data: JSON.stringify({"email": email, "password": password}),
+                method: "POST",
+                dataType: "JSON",
+                contentType: "application/json",
+                async: false,
+                success: function (result) {
+                    if (result.responseCode === ResponseCode.REGISTERED_SUCCESSFUL) {
+                        $.alert({
+                            title: "注册成功",
+                            content: "如果您是管理员用户，注册后请联系代毅把您的账户身份切换为管理员"
+                        });
+                    } else if (result.responseCode === ResponseCode.EMAIL_ALREADY_EXISTS) {
+                        $.dialog({
+                            title: "错误",
+                            content: "此邮箱已被注册！"
+                        });
+                    } else {
+                        $.dialog({
+                            title: "错误",
+                            content: "服务器冒烟了，请联系代毅处理吧！"
+                        });
+                    }
+                }
             });
         }
 
@@ -55,6 +77,7 @@ $(function () {
                 repeatSend = false;
             }, 60 * 1000);
         } else {
+
             $.dialog({
                 title: "提醒",
                 content: "操作频繁，请稍后再试"
@@ -79,10 +102,10 @@ function getVerificationCode() {
 }
 
 
-function sendVerificationCode(emailAddress) {
+function sendVerificationCode(email) {
     $.ajax({
         url: "/sendVerificationCode",
-        data: {"emailAddress": emailAddress},
+        data: {"email": email},
         method: "POST"
     });
 }

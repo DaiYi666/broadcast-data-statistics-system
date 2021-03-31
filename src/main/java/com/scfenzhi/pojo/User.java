@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class User {
-    private String id;
+    private Integer id;
     private String email;
     private String password;
     private String userType;

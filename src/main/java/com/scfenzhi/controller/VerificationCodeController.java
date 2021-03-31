@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -18,8 +17,8 @@ public class VerificationCodeController {
     private EmailSender emailSender;
 
     @PostMapping("/sendVerificationCode")
-    public void sendVerificationCode(String emailAddress, HttpSession session) {
-        String verificationCode = emailSender.sendEmailVerificationCode(emailAddress);
+    public void sendVerificationCode(String email, HttpSession session) {
+        String verificationCode = emailSender.sendEmailVerificationCode(email);
         session.setAttribute("verificationCode", verificationCode);
     }
 
