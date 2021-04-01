@@ -10,7 +10,23 @@
     background: rgba(0, 0, 0, 0.3);
 }
 
-#comprehensiveThisMonth {
-    height: 850px;
-    /*background-color: skyblue;*/
+.page > div {
+    display: none;
+}
+
+#comprehensiveOfThisMonth > div {
+    height: 400px;
+}
+
+#morningShiftOfThisMonth > .row > .col-lg-6 > div {
+    height: 400px;
+}
+
+#middleShiftOfThisMonth > .row > .col-lg-6 > div {
+    height: 400px;
+}
+
+
+#eveningShiftOfThisMonth > .row > .col-lg-6 > div {
+    height: 400px;
 }
