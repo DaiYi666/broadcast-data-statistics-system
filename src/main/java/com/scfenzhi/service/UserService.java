@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
  */
 public interface UserService {
 
-    CommonResult<Boolean> authentication(User user, HttpSession session);
+    CommonResult<String> authentication(User user, HttpSession session);
 
     CommonResult<Integer> addUser(User user);
 

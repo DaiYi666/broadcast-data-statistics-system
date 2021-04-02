@@ -23,7 +23,11 @@ $(function () {
                 async: false,
                 success: function (result) {
                     if (result.responseCode === ResponseCode.AUTHENTICATION_SUCCESSFUL) {
-                        location.href = "/admin/dataDisplayBoard.html";
+                        if(result.data.userType===UserType.ADMINISTRATOR){
+                            location.href = "/admin/dataDisplayBoard.html";
+                        }else {
+                            location.href = "/workbench/main.html";
+                        }
                     } else if (result.responseCode === ResponseCode.AUTHENTICATION_FAILED) {
                         $.dialog({
                             title: "错误",

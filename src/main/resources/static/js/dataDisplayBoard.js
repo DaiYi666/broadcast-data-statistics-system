@@ -1,5 +1,3 @@
-let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-
 $(function () {
 
     $(".option").on("click", function () {
@@ -13,16 +11,20 @@ $(function () {
             showMorningShiftOfThisMonth();
         } else if (option === "本月中班") {
             initializeContainer("middleShiftOfThisMonth");
-            showMiddleShiftOfThisMonth()
+            showMiddleShiftOfThisMonth();
         } else if (option === "本月晚班") {
             initializeContainer("eveningShiftOfThisMonth");
             showEveningShiftOfThisMonth();
         } else if (option === "排行榜") {
-            initializeContainer("list")
+            initializeContainer("list");
+            showList();
         }
     });
 
 
+
+
+    $(".checked").trigger("click");
 });
 
 
@@ -32,7 +34,8 @@ function initializeContainer(id) {
 }
 
 
-/*显示本月早班*/
+//==============================================================================显示本月综合==========================================================================================
+
 function showComprehensiveOfThisMonth() {
     //支付订单
     (function () {
@@ -92,9 +95,10 @@ function showComprehensiveOfThisMonth() {
         echarts.setOption(option);
     })();
 
+
     //支付金额
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .pay-amount"));
+        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .paid-amount"));
         let option = {
             title: {
                 left: '2%',
@@ -152,7 +156,7 @@ function showComprehensiveOfThisMonth() {
 
     //下单UV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .order-of-uv"));
+        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .orders-uv"));
         let option = {
             title: {
                 left: '2%',
@@ -210,7 +214,7 @@ function showComprehensiveOfThisMonth() {
 
     //订单PV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .order-of-pv"));
+        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .orders-pv"));
         let option = {
             title: {
                 left: '2%',
@@ -268,7 +272,7 @@ function showComprehensiveOfThisMonth() {
 
     //新增关注
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .additional-attention"));
+        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .increased-attention"));
         let option = {
             title: {
                 left: '2%',
@@ -326,7 +330,7 @@ function showComprehensiveOfThisMonth() {
 
     //直播间分享次数
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .number-of-times-shared-of-broadcast-room"));
+        let echarts = window.echarts.init(document.querySelector("#comprehensiveOfThisMonth> .share-studio"));
         let option = {
             title: {
                 left: '2%',
@@ -398,7 +402,8 @@ function getDayOfThisMonth() {
 }
 
 
-//显示本月早班
+//==============================================================================显示本月早班==========================================================================================
+
 function showMorningShiftOfThisMonth() {
     //支付订单
     (function () {
@@ -411,8 +416,8 @@ function showMorningShiftOfThisMonth() {
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -424,7 +429,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -440,7 +445,7 @@ function showMorningShiftOfThisMonth() {
                     name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [100, 390, 330, 220]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -450,17 +455,17 @@ function showMorningShiftOfThisMonth() {
 
     //支付金额
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .pay-amount"));
+        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .paid-amount"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '支付金额(元)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -472,7 +477,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -485,10 +490,10 @@ function showMorningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '支付金额',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [44244, 4410, 4542, 42154]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -498,17 +503,17 @@ function showMorningShiftOfThisMonth() {
 
     //下单UV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .order-of-uv"));
+        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .orders-uv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '下单UV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -520,7 +525,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -533,10 +538,10 @@ function showMorningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '下单UV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [22, 44, 54, 13]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -546,17 +551,17 @@ function showMorningShiftOfThisMonth() {
 
     //订单PV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .order-of-pv"));
+        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .orders-pv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '订单PV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -568,7 +573,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -581,10 +586,10 @@ function showMorningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '订单PV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [45, 35, 12, 5]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -594,17 +599,17 @@ function showMorningShiftOfThisMonth() {
 
     //新增关注
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .additional-attention"));
+        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .increased-attention"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '新增关注(人)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -616,7 +621,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -629,10 +634,10 @@ function showMorningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '新增关注',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [78, 58, 785, 587]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -642,17 +647,17 @@ function showMorningShiftOfThisMonth() {
 
     //直播间分享次数
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .number-of-times-shared-of-broadcast-room"));
+        let echarts = window.echarts.init(document.querySelector("#morningShiftOfThisMonth .share-studio"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '直播间分享(次)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -664,7 +669,7 @@ function showMorningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -677,10 +682,10 @@ function showMorningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '直播间分享',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [87, 585, 757, 111]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -690,7 +695,8 @@ function showMorningShiftOfThisMonth() {
 }
 
 
-//显示本月中班
+//==============================================================================显示本月中班==========================================================================================
+
 function showMiddleShiftOfThisMonth() {
     //支付订单
     (function () {
@@ -703,8 +709,8 @@ function showMiddleShiftOfThisMonth() {
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -716,7 +722,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -732,7 +738,7 @@ function showMiddleShiftOfThisMonth() {
                     name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [100, 390, 330, 220]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -742,17 +748,17 @@ function showMiddleShiftOfThisMonth() {
 
     //支付金额
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .pay-amount"));
+        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .paid-amount"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '支付金额(元)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -764,7 +770,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -777,10 +783,10 @@ function showMiddleShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '支付金额',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [44244, 4410, 4542, 42154]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -790,17 +796,17 @@ function showMiddleShiftOfThisMonth() {
 
     //下单UV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .order-of-uv"));
+        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .orders-uv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '下单UV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -812,7 +818,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -825,10 +831,10 @@ function showMiddleShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '下单UV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [22, 44, 54, 13]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -838,17 +844,17 @@ function showMiddleShiftOfThisMonth() {
 
     //订单PV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .order-of-pv"));
+        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .orders-pv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '订单PV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -860,7 +866,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -873,10 +879,10 @@ function showMiddleShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '订单PV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [45, 35, 12, 5]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -886,17 +892,17 @@ function showMiddleShiftOfThisMonth() {
 
     //新增关注
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .additional-attention"));
+        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .increased-attention"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '新增关注(人)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -908,7 +914,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -921,10 +927,10 @@ function showMiddleShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '新增关注',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [78, 58, 785, 587]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -934,17 +940,17 @@ function showMiddleShiftOfThisMonth() {
 
     //直播间分享次数
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .number-of-times-shared-of-broadcast-room"));
+        let echarts = window.echarts.init(document.querySelector("#middleShiftOfThisMonth .share-studio"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '直播间分享(次)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -956,7 +962,7 @@ function showMiddleShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -969,19 +975,21 @@ function showMiddleShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '直播间分享',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [87, 585, 757, 111]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
         echarts.setOption(option);
     })();
+
 }
 
 
-//显示本月晚班
+//==============================================================================显示本月晚班==========================================================================================
+
 function showEveningShiftOfThisMonth() {
     //支付订单
     (function () {
@@ -994,8 +1002,8 @@ function showEveningShiftOfThisMonth() {
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1007,7 +1015,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1023,7 +1031,7 @@ function showEveningShiftOfThisMonth() {
                     name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [100, 390, 330, 220]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -1033,17 +1041,17 @@ function showEveningShiftOfThisMonth() {
 
     //支付金额
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .pay-amount"));
+        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .paid-amount"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '支付金额(元)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1055,7 +1063,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1068,10 +1076,10 @@ function showEveningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '支付金额',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [44244, 4410, 4542, 42154]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -1081,17 +1089,17 @@ function showEveningShiftOfThisMonth() {
 
     //下单UV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .order-of-uv"));
+        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .orders-uv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '下单UV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1103,7 +1111,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1116,10 +1124,10 @@ function showEveningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '下单UV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [22, 44, 54, 13]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -1129,17 +1137,17 @@ function showEveningShiftOfThisMonth() {
 
     //订单PV
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .order-of-pv"));
+        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .orders-pv"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '订单PV(%)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1151,7 +1159,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1164,10 +1172,10 @@ function showEveningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '订单PV',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [45, 35, 12, 5]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -1177,17 +1185,17 @@ function showEveningShiftOfThisMonth() {
 
     //新增关注
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .additional-attention"));
+        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .increased-attention"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '新增关注(人)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1199,7 +1207,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1212,10 +1220,10 @@ function showEveningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '新增关注',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [78, 58, 785, 587]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
@@ -1225,17 +1233,17 @@ function showEveningShiftOfThisMonth() {
 
     //直播间分享次数
     (function () {
-        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .number-of-times-shared-of-broadcast-room"));
+        let echarts = window.echarts.init(document.querySelector("#eveningShiftOfThisMonth .share-studio"));
         let option = {
             title: {
                 left: '2%',
                 top: '5%',
-                text: '直播间分享(次)'
+                text: '支付订单(笔)'
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {
+                    type: 'shadow'
                 }
             },
             grid: {
@@ -1247,7 +1255,7 @@ function showEveningShiftOfThisMonth() {
             xAxis: [
                 {
                     type: 'category',
-                    data: ['董诗园', '胡颖', '任雨涵', '程思睿'],
+                    data: ['董诗园', '胡颖', '任雨涵', '程思睿', "*", "*", "*", "*", "*", "*"],
                     axisTick: {
                         alignWithLabel: true
                     }
@@ -1260,13 +1268,261 @@ function showEveningShiftOfThisMonth() {
             ],
             series: [
                 {
-                    name: '直播间分享',
+                    name: '支付订单',
                     type: 'bar',
                     barWidth: '60%',
-                    data: [87, 585, 757, 111]
+                    data: [100, 390, 330, 220, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
         echarts.setOption(option);
     })();
+
 }
+
+
+//==============================================================================================排行榜==========================================================================
+
+function showList() {
+    //支付订单
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .paid-orders"));
+        let option = {
+            title: {
+                text: '订单排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [1235, 2236, 3000, 5766]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+
+    //支付金额
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .paid-amount"));
+        let option = {
+            title: {
+                text: '支付金额排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [12033, 22031, 34566, 56788]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+
+    //订单UV
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .orders-uv"));
+        let option = {
+            title: {
+                text: '订单UV排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [4.2, 4.5, 7.6, 9.1]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+
+    //下单pv
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .orders-pv"));
+        let option = {
+            title: {
+                text: '下单PV排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [1.3, 2.5, 7.6, 9.3]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+
+    //新增关注
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .increased-attention"));
+        let option = {
+            title: {
+                text: '新增关注排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [1203, 2413, 3600, 4522]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+
+    //直播间分享
+    (function () {
+        let echarts = window.echarts.init(document.querySelector("#list .share-studio"));
+        let option = {
+            title: {
+                text: '直播间分享排行榜'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['任雨涵', '董诗园', '程思睿', '胡颖']
+            },
+            series: [
+                {
+                    type: 'bar',
+                    data: [98, 354, 465, 776]
+                }
+            ]
+        };
+        echarts.setOption(option);
+    })();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

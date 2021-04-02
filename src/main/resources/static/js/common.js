@@ -14,3 +14,18 @@ const ResponseCode = {
     AUTHENTICATION_FAILED: 300,
     EMAIL_ALREADY_EXISTS: 301
 }
+
+const UserType = {
+    ADMINISTRATOR: "administrator",
+    OTHER: "other"
+}
+
+let BroadcastData = {
+    compereName: "",
+    paidOrders: [],
+    paidAmount: [],
+    ordersUv: [],
+    ordersPv: [],
+    increasedAttention: [],
+    shareStudio: []
+}

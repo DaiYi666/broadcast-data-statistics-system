@@ -11,24 +11,26 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <div class="navigation">
-                <ul class="nav nav-pills pull-left">
-                    <li role="presentation" class="option"><a href="#">本月综合</a></li>
-                    <li role="presentation" class="option"><a href="#">本月早班</a></li>
-                    <li role="presentation" class="option"><a href="#">本月中班</a></li>
-                    <li role="presentation" class="option"><a href="#">本月晚班</a></li>
-                    <li role="presentation" class="option active"><a href="#">排行榜</a></li>
-                </ul>
+        <div class="col-md-11">
+            <ul class="nav nav-pills pull-left">
+                <li role="presentation" class="option checked"><a href="#">本月综合</a></li>
+                <li role="presentation" class="option"><a href="#">本月早班</a></li>
+                <li role="presentation" class="option"><a href="#">本月中班</a></li>
+                <li role="presentation" class="option"><a href="#">本月晚班</a></li>
+                <li role="presentation" class="option"><a href="#">排行榜</a></li>
+            </ul>
 
-                <ul class="nav nav-tabs pull-right">
-                    <li role="presentation"><a href="#">综合</a></li>
-                    <li role="presentation"><a href="#">董诗园</a></li>
-                    <li role="presentation"><a href="#">胡颖</a></li>
-                    <li role="presentation"><a href="#">任雨涵</a></li>
-                    <li role="presentation"><a href="#">程思睿</a></li>
-                </ul>
-            </div>
+            <ul class="nav nav-tabs pull-right">
+                <li role="presentation"><a href="#">综合</a></li>
+                <li role="presentation"><a href="#">董诗园</a></li>
+                <li role="presentation"><a href="#">胡颖</a></li>
+                <li role="presentation"><a href="#">任雨涵</a></li>
+                <li role="presentation"><a href="#">程思睿</a></li>
+            </ul>
+        </div>
+
+        <div class="col-lg-1 pull-right">
+            <button class="btn btn-danger">退出登录</button>
         </div>
     </div>
 
@@ -37,127 +39,54 @@
             <!--            支付订单-->
             <div class="paid-orders"></div>
             <!--            支付金额-->
-            <div class="pay-amount"></div>
+            <div class="paid-amount"></div>
             <!--            下单UV-->
-            <div class="order-of-uv"></div>
+            <div class="orders-uv"></div>
             <!--            订单PV-->
-            <div class="order-of-pv"></div>
+            <div class="orders-pv"></div>
             <!--            新增关注-->
-            <div class="additional-attention"></div>
-            <!--            直播间分享次数-->
-            <div class="number-of-times-shared-of-broadcast-room"></div>
+            <div class="increased-attention"></div>
+            <!--            分享直播间-->
+            <div class="share-studio"></div>
         </div>
 
 
         <div id="morningShiftOfThisMonth">
-            <div class="row">
-                <!--            支付订单-->
-                <div class="col-lg-6">
-                    <div class="paid-orders"></div>
-                </div>
-                <!--            支付金额-->
-                <div class="col-lg-6">
-                    <div class="pay-amount"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            下单UV-->
-                    <div class="order-of-uv"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            订单PV-->
-                    <div class="order-of-pv"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            新增关注-->
-                    <div class="additional-attention"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            直播间分享次数-->
-                    <div class="number-of-times-shared-of-broadcast-room"></div>
-                </div>
-            </div>
+            <div class="paid-orders"></div>
+            <div class="paid-amount"></div>
+            <div class="orders-uv"></div>
+            <div class="orders-pv"></div>
+            <div class="increased-attention"></div>
+            <div class="share-studio"></div>
         </div>
 
 
         <div id="middleShiftOfThisMonth">
-            <div class="row">
-                <!--            支付订单-->
-                <div class="col-lg-6">
-                    <div class="paid-orders"></div>
-                </div>
-                <!--            支付金额-->
-                <div class="col-lg-6">
-                    <div class="pay-amount"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            下单UV-->
-                    <div class="order-of-uv"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            订单PV-->
-                    <div class="order-of-pv"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            新增关注-->
-                    <div class="additional-attention"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            直播间分享次数-->
-                    <div class="number-of-times-shared-of-broadcast-room"></div>
-                </div>
-            </div>
+            <div class="paid-orders"></div>
+            <div class="paid-amount"></div>
+            <div class="orders-uv"></div>
+            <div class="orders-pv"></div>
+            <div class="increased-attention"></div>
+            <div class="share-studio"></div>
         </div>
 
 
         <div id="eveningShiftOfThisMonth">
-            <div class="row">
-                <!--            支付订单-->
-                <div class="col-lg-6">
-                    <div class="paid-orders"></div>
-                </div>
-                <!--            支付金额-->
-                <div class="col-lg-6">
-                    <div class="pay-amount"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            下单UV-->
-                    <div class="order-of-uv"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            订单PV-->
-                    <div class="order-of-pv"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!--            新增关注-->
-                    <div class="additional-attention"></div>
-                </div>
-                <div class="col-lg-6">
-                    <!--            直播间分享次数-->
-                    <div class="number-of-times-shared-of-broadcast-room"></div>
-                </div>
-            </div>
+            <div class="paid-orders"></div>
+            <div class="paid-amount"></div>
+            <div class="orders-uv"></div>
+            <div class="orders-pv"></div>
+            <div class="increased-attention"></div>
+            <div class="share-studio"></div>
         </div>
 
         <div id="list">
-
+            <div class="paid-orders"></div>
+            <div class="paid-amount"></div>
+            <div class="orders-uv"></div>
+            <div class="orders-pv"></div>
+            <div class="increased-attention"></div>
+            <div class="share-studio"></div>
         </div>
     </div>
 

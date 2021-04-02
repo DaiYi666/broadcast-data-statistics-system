@@ -20,7 +20,7 @@ public interface UserMapper {
      * @param user user对象
      * @return 如果验证成功返回true，反之则返回false
      */
-    boolean authentication(@Param("user") User user);
+    String authentication(@Param("user") User user);
 
     /**
      * @param user user对象

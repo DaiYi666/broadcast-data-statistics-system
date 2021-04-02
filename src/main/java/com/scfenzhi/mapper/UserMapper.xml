@@ -3,13 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scfenzhi.mapper.UserMapper">
-    <select id="authentication" parameterType="user" resultType="_boolean">
-      <![CDATA[
-        select count(`id`)
+    <select id="authentication" parameterType="user" resultType="string">
+        select `user_type`
         from `user`
         where `email` = #{user.email}
           and `password` = #{user.password}
-        ]]>
     </select>
 
     <insert id="addUser" parameterType="user">
