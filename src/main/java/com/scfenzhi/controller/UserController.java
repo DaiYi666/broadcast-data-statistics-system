@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/authentication")
-    public CommonResult<Boolean> authentication(@RequestBody User user, HttpSession session) {
+    public CommonResult<String> authentication(@RequestBody User user, HttpSession session) {
         return userService.authentication(user,session);
     }
 
