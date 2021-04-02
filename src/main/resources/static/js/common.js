@@ -9,6 +9,32 @@ function validateEmail(email) {//校验邮箱
 }
 
 
+function validateCompereId(compereId) {//校验邮箱
+    if (compereId !== null && compereId !== "") {
+        let standard = /^\d{12}$/;
+        if (standard.test(compereId)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function getDayOfThisMonth() {
+    let date = new Date()
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let lastDay = new Date(year, month, 0).getDate();
+    let days = [];
+    for (let i = 1; i <= lastDay; i++) {
+        days.push(i);
+    }
+    return days;
+}
+
+
+
+
 function logOut() {
     $.ajax({
         url: "/user/logOut",
@@ -20,15 +46,22 @@ function logOut() {
 
 
 const ResponseCode = {
-    AUTHENTICATION_SUCCESSFUL: 200,
+    SUCCESSFUL: 200,
     REGISTERED_SUCCESSFUL: 201,
-    AUTHENTICATION_FAILED: 300,
+    FAILED: 300,
+    REPEAT_ADD:302,
     EMAIL_ALREADY_EXISTS: 301
 }
 
 const UserType = {
     ADMINISTRATOR: "administrator",
     OTHER: "other"
+}
+
+function CommonResult(result) {
+    this.responseCode = result.responseCode;
+    this.message = result.message;
+    this.data = result.data;
 }
 
 let BroadcastData = {

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scfenzhi.mapper.BroadcastDataMapper">
+    <sql id="baseColumn">
+        `compere_id`
+        ,
+        `compere_name`,
+        `date`,
+        `shift`,
+        `paid_orders`,
+        `paid_amount`,
+        `orders_uv`,
+        `orders_pv`,
+        `increased_attention`,
+        `share_studio`
+    </sql>
+
+
+    <select id="isRepeatAdd" resultType="_boolean">
+    <![CDATA[
+        select count(`compere_id`)
+        from `broadcast_data`
+        where `date` = #{date}
+          and `compere_id` = #{compereId}
+        ]]>
+  </select>
+
+    <select id="getCompereNameById" parameterType="string" resultType="string">
+        select `compere_name`
+        from `compere`
+        where `compere_id` = #{compereId};
+    </select>
+
+    <insert id="addRecord" parameterType="broadcastData">
+        insert into `broadcast_data`
+        (<include refid="baseColumn"></include>)
+        values (#{broadcastData.compereId},
+        #{broadcastData.compereName},
+        #{broadcastData.date},
+        #{broadcastData.shift},
+        #{broadcastData.paidOrders},
+        #{broadcastData.paidAmount},
+        #{broadcastData.ordersUv},
+        #{broadcastData.ordersPv},
+        #{broadcastData.increasedAttention},
+        #{broadcastData.shareStudio})
+    </insert>
+
+
+    <select id="getAllDataOfThisMonth" resultType="broadcastData">
+        SELECT
+        <include refid="baseColumn"></include>
+        FROM `broadcast_data`
+        WHERE `date`&gt;=(SELECT DATE_ADD(CURDATE(),INTERVAL-DAY(CURDATE())+1 DAY))
+        AND `date`&lt;=(SELECT LAST_DAY(CURDATE()));
+    </select>
+
+    <select id="getCompereIdList" resultType="string">
+        select `compere_id`
+        from `compere`
+    </select>
+</mapper>

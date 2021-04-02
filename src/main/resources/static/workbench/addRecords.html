@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>添加记录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.min.css">
     <link rel="stylesheet" href="../css/bootstrap-select.min.css">
 </head>
 <body>
@@ -12,63 +13,71 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2">
-            <form>
+            <form action="#" id="addRecord">
+                <div class="form-group">
+                    <label for="compereId">主播id</label>
+                    <input type="text" required class="form-control" autocomplete="off" id="compereId" maxlength="12"
+                           placeholder="输入主播id后将自动查询主播姓名...">
+                </div>
+
                 <div class="form-group">
                     <label for="compereName">主播</label>
-                    <select id="compereName" class="selectpicker form-control">
-                        <option selected disabled>请选择</option>
-                        <option value="1">董诗园</option>
-                        <option value="2">胡颖</option>
-                        <option value="3">任雨涵</option>
-                        <option value="4">程思睿</option>
+                    <select id="compereName" disabled required class="selectpicker form-control">
+                        <option value="">尚未选择</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="date">日期</label>
-                    <input type="date" class="form-control" id="date">
+                    <input type="date" required class="form-control" id="date">
                 </div>
 
                 <div class="form-group">
                     <label for="shift">班次</label>
                     <select id="shift" class="selectpicker form-control">
-                        <option selected disabled>请选择</option>
-                        <option value="1">早班</option>
-                        <option value="2">中班</option>
-                        <option value="3">晚班</option>
+                        <option value="" selected disabled>请选择</option>
+                        <option value="morningShift">早班</option>
+                        <option value="noonShift">中班</option>
+                        <option value="nightShift">晚班</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="paidOrders">支付订单</label>
-                    <input type="number" class="form-control" id="paidOrders" placeholder="请输入已支付订单数（笔）">
+                    <input type="number" min="0" class="form-control" required id="paidOrders"
+                           placeholder="请输入已支付订单数（笔）">
                 </div>
 
 
                 <div class="form-group">
                     <label for="paidAmount">支付金额</label>
-                    <input type="number" class="form-control" id="paidAmount" placeholder="请输入已支付金额（元）">
+                    <input type="number" min="0" class="form-control" required id="paidAmount"
+                           placeholder="请输入已支付金额（元）">
                 </div>
 
                 <div class="form-group">
                     <label for="ordersUv">下单UV</label>
-                    <input type="number" class="form-control" id="ordersUv" placeholder="请输入下单UV（%）">
+                    <input type="number" min="0" max="100" step="0.1" class="form-control" required id="ordersUv"
+                           placeholder="请输入下单UV（%）">
                 </div>
 
                 <div class="form-group">
                     <label for="ordersPv">订单PV</label>
-                    <input type="number" class="form-control" id="ordersPv" placeholder="请输入订单PV（%）">
+                    <input type="number" min="0" max="100" step="0.1" class="form-control" required id="ordersPv"
+                           placeholder="请输入订单PV（%）">
                 </div>
 
 
                 <div class="form-group">
                     <label for="increasedAttention">新增关注</label>
-                    <input type="number" class="form-control" id="increasedAttention" placeholder="新输入新增关注数量（人）">
+                    <input type="number" min="0" class="form-control" required id="increasedAttention"
+                           placeholder="新输入新增关注数量（人）">
                 </div>
 
                 <div class="form-group">
                     <label for="shareStudio">直播间分享</label>
-                    <input type="number" class="form-control" id="shareStudio" placeholder="请输入直播间分享次数（次）">
+                    <input type="number" min="0" class="form-control" required id="shareStudio"
+                           placeholder="请输入直播间分享次数（次）">
                 </div>
                 <button type="submit" class="btn btn-default">添加记录</button>
             </form>
@@ -81,7 +90,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="jumbotron">
-                        <h1>Hello, 下午好!</h1>
+                        <h1 id="hello"></h1>
                         <p>这里有一些细节需要您注意。首先很感谢您使用本套系统！本系统目前处于试运行阶段，可能存在bug。
                             如果您在使用的过程中发现了bug，或者您有更好的意见和建议，请与技术部代毅联系。非常感谢您宝贵的意见和建议！</p>
                         <p><a class="btn btn-primary btn-lg" href="#" role="button">显然我知道了</a></p>
@@ -89,11 +98,34 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-warning" role="alert">最近还没有添加成功的记录...</div>
-                </div>
-            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="jumbotron">-->
+<!--                        <div class="container-fluid">-->
+<!--                            sdfas-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row">-->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="jumbotron">-->
+<!--                        <div class="container-fluid">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-lg-4">-->
+<!--                                    <div class="input-group">-->
+<!--                                        <input type="text" class="form-control" placeholder="Search for...">-->
+<!--                                        <span class="input-group-btn">-->
+<!--                                            <button class="btn btn-default" type="button">查询id</button>-->
+<!--                                        </span>-->
+<!--                                    </div>&lt;!&ndash; /input-group &ndash;&gt;-->
+<!--                                </div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
+<!--                            </div>&lt;!&ndash; /.row &ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
         </div>
 
@@ -101,8 +133,9 @@
 </div>
 </body>
 <script src="../js/jquery-3.6.0.min.js"></script>
-<script src="../js/jquery-confirm.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../js/bootstrap-select.min.js"></script>
+<script src="../js/modal-dialog.js"></script>
 <script src="../js/common.js"></script>
+<script src="../js/addRecord.js"></script>
 </html>

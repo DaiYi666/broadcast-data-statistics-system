@@ -1,41 +1,93 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>分治直播数据管理系统</title>
-    <link rel="stylesheet" href="css/jquery-confirm.min.css">
-    <link rel="stylesheet" href="css/bundled.css">
-    <link rel="stylesheet" href="css/index.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bundled.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/form-elements.css">
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
 </head>
+
 <body>
-<div class="background">
-    <div class="wrap">
-        <div>
-            <label>
-                <input type="email" maxlength="32" autocomplete="off" id="email" placeholder="请输入邮箱">
-            </label>
+<!-- Top content -->
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>分治直播数据管理系统</strong></h1>
+                    <div class="description">
+                        <p>欢迎使用分治直播数据管理系统！此系统尚处于试运行阶段，为保障您的使用体验，如果您在使用的过程中发现了bug，请及时联系<strong>技术部代毅</strong>进行处理，谢谢!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>登录系统</h3>
+                            <p>请输入您的邮箱及密码进行登录</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="#" method="post" class="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="email"></label>
+                                <input type="text" name="email" placeholder="邮箱" maxlength="32"
+                                       class="form-control" id="email" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password"></label>
+                                <input type="password" name="password" placeholder="密码" maxlength="18"
+                                       class="form-control" id="password">
+                            </div>
+                            <button type="submit" class="btn" id="loginButton">立即登录</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 social-login">
+                    <h3>还没有账号？试试下面的方式吧</h3>
+                    <div class="social-login-buttons">
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-qq"></i> QQ
+                        </a>
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-wechat"></i> 微信
+                        </a>
+                        <a class="btn btn-link-2" href="#">
+                            <i class="fa fa-google-plus"></i> 立即注册
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <label>
-                <input type="password" maxlength="18" id="password" placeholder="请输入密码">
-            </label>
-        </div>
-
-        <div>
-            <button id="loginButton">登录</button>
-        </div>
-
     </div>
 
-    <div class="other-option">
-        <a href="#"><button>忘记密码</button></a>
-        <a href="register.html"><button>注册用户</button></a>
-    </div>
 </div>
+<!-- Javascript -->
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/jquery-confirm.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/index.js"></script>
 </body>
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/jquery-confirm.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
 </html>

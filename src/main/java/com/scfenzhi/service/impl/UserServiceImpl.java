@@ -3,7 +3,6 @@ package com.scfenzhi.service.impl;
 import com.scfenzhi.mapper.UserMapper;
 import com.scfenzhi.pojo.CommonResult;
 import com.scfenzhi.pojo.User;
-import com.scfenzhi.pojo.UserType;
 import com.scfenzhi.service.UserService;
 import com.scfenzhi.utils.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +29,9 @@ public class UserServiceImpl implements UserService {
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         String userType = userMapper.authentication(user);
         if (userType == null) {
-            responseResult.setResponseCode(ResponseCode.AUTHENTICATION_FAILED);
+            responseResult.setResponseCode(ResponseCode.FAILED);
         } else {
-            responseResult.setResponseCode(ResponseCode.AUTHENTICATION_SUCCESSFUL);
+            responseResult.setResponseCode(ResponseCode.SUCCESSFUL);
             responseResult.setData(userType);
             user.setUserType(userType);
             session.setAttribute("user", user);
