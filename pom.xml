@@ -82,20 +82,14 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.html</include>
-                    <include>**/*.css</include>
-                    <include>**/*.jpg</include>
-                    <include>**/*.png</include>
-                    <include>**/*.js</include>
-                    <include>**/*.yml</include>
+                    <include>**/*.*</include>
                 </includes>
             </resource>
 
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>**/*.xml</include>
+                    <include>**/*.*</include>
                 </includes>
             </resource>
         </resources>

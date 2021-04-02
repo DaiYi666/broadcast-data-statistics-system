@@ -25,10 +25,10 @@ public class AdministratorFilter implements Filter {
             log.info("未登录");
             ((HttpServletResponse) servletResponse).sendRedirect("/index.html");
         } else if (UserType.ADMINISTRATOR.equals(user.getUserType())) {
-            log.info("管理员用户登录");
+            log.info("管理员用户登录，用户类型为："+user.getUserType());
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            log.info("其他用户登录");
+            log.info("其他用户登录，用户类型为："+user.getUserType());
         }
     }
 }

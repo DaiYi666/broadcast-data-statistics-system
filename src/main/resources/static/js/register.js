@@ -33,7 +33,7 @@ $(function () {
             });
         } else {
             $.ajax({
-                url: "/addUser",
+                url: "/user/addUser",
                 data: JSON.stringify({"email": email, "password": password}),
                 method: "POST",
                 dataType: "JSON",

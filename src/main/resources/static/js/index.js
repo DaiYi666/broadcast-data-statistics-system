@@ -15,7 +15,7 @@ $(function () {
             });
         } else {
             $.ajax({
-                url: "/authentication",
+                url: "/user/authentication",
                 data: JSON.stringify({"email": email, "password": password}),
                 method: "POST",
                 dataType: "JSON",
@@ -23,9 +23,9 @@ $(function () {
                 async: false,
                 success: function (result) {
                     if (result.responseCode === ResponseCode.AUTHENTICATION_SUCCESSFUL) {
-                        if(result.data.userType===UserType.ADMINISTRATOR){
+                        if (result.data === UserType.ADMINISTRATOR) {
                             location.href = "/admin/dataDisplayBoard.html";
-                        }else {
+                        } else {
                             location.href = "/workbench/main.html";
                         }
                     } else if (result.responseCode === ResponseCode.AUTHENTICATION_FAILED) {

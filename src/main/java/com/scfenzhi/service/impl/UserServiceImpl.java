@@ -6,6 +6,7 @@ import com.scfenzhi.pojo.User;
 import com.scfenzhi.pojo.UserType;
 import com.scfenzhi.service.UserService;
 import com.scfenzhi.utils.ResponseCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
  * @author DaiYi
  * @Date 2021/3/30 16:59
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -32,6 +34,7 @@ public class UserServiceImpl implements UserService {
         } else {
             responseResult.setResponseCode(ResponseCode.AUTHENTICATION_SUCCESSFUL);
             responseResult.setData(userType);
+            user.setUserType(userType);
             session.setAttribute("user", user);
         }
         return responseResult;

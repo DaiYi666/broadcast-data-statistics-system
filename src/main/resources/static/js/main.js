@@ -5,15 +5,19 @@ $(function () {
         let option = $(this).children("a").text();
         console.log(option);
         if (option === "本月所有数据") {
-            $("#window").attr("src", "../admin/allTheDataThisMonth.html");
+            $("#window").attr("src", "../workbench/allTheDataThisMonth.html");
         } else if (option === "添加记录") {
-            $("#window").attr("src", "../admin/addRecords.html");
+            $("#window").attr("src", "../workbench/addRecords.html");
         }
     });
 
 
     $("#searchButton").on("click", function () {
-        $("#window").attr("src", "../admin/search.html");
+        $("#window").attr("src", "../workbench/search.html");
+    });
+
+    $("#logOutButton").on("click", function () {
+        logOut();
     });
 
 });

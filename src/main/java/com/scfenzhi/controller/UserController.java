@@ -3,9 +3,7 @@ package com.scfenzhi.controller;
 import com.scfenzhi.pojo.CommonResult;
 import com.scfenzhi.pojo.User;
 import com.scfenzhi.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Resource
@@ -23,12 +22,18 @@ public class UserController {
 
     @PostMapping("/authentication")
     public CommonResult<String> authentication(@RequestBody User user, HttpSession session) {
-        return userService.authentication(user,session);
+        return userService.authentication(user, session);
     }
 
     @PostMapping("/addUser")
     public CommonResult<Integer> addUser(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+
+    @GetMapping("/logOut")
+    public void logOut(HttpSession session) {
+        session.removeAttribute("user");
     }
 
 }

@@ -21,7 +21,9 @@ $(function () {
         }
     });
 
-
+    $("#logOutButton").on("click", function () {
+        logOut();
+    });
 
 
     $(".checked").trigger("click");
