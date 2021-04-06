@@ -39,7 +39,6 @@ $(function () {
                 {
                     name: '胡颖',
                     type: 'line',
-                    stack: '总量',
                     data: [220, 182, 191, 234, 290, 330, 310, 232, 201, 154, 190, 330, 410, 242, 432, 53, 567, 567, 234, 345]
                 },
                 {
@@ -56,6 +55,15 @@ $(function () {
         };
         echarts.setOption(option);
     })();
-
-
 });
+
+
+function analyticalData(data) {
+    for (let index in data) {
+        let series = {};
+        if (data.hasOwnProperty(index)) {
+            series.type="line";
+            series.name=data[index].name;
+        }
+    }
+}

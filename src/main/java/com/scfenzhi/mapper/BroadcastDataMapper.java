@@ -43,4 +43,10 @@ public interface BroadcastDataMapper {
      */
     List<BroadcastData> getAllDataOfThisMonth();
 
+    /**
+     * @param compereId 主播id
+     * @return 返回该主播的所有数据
+     */
+    List<BroadcastData> getBroadcastDataByCompereId(@Param("compereId") String compereId);
+
 }

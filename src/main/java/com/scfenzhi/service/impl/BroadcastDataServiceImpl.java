@@ -64,6 +64,15 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(String compereId) {
+        CommonResult<List<BroadcastData>> commonResult = new CommonResult<>();
+        List<BroadcastData> broadcastDataList = broadcastDataMapper.getBroadcastDataByCompereId(compereId);
+        commonResult.setData(broadcastDataList);
+        commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
+        return commonResult;
+    }
+
 
 //    @Scheduled(cron = "0 0 23 * * *")
 //    public void updateData() {

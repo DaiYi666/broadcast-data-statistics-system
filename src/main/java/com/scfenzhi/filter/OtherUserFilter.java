@@ -15,21 +15,18 @@ import java.io.IOException;
  * @Date 2021/3/31 16:06
  */
 @Slf4j
-public class OtherFilter implements Filter {
+public class OtherUserFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user == null) {
+        if (user != null) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            log.info("其他用户登录，用户类型为：" + user.getUserType());
+        } else {
             log.info("未登录");
             ((HttpServletResponse) servletResponse).sendRedirect("/index.html");
-        } else if (UserType.OTHER.equals(user.getUserType())) {
-            log.info("其他用户登录，用户类型为：" + user.getUserType());
-            filterChain.doFilter(servletRequest, servletResponse);
-        } else {
-            log.info("管理员用户登录，用户类型为：" + user.getUserType());
-            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 }

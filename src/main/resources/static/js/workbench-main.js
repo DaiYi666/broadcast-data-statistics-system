@@ -39,4 +39,13 @@ $(function () {
         }
     });
 
+
+    $("#search").on("submit", function () {
+        if (validateCompereId($("#compereId").val())) {
+            $(".option").removeClass("active");
+            $("#window").attr("src", "/workbench/search.html");
+        }
+        return false;
+    });
+
 });

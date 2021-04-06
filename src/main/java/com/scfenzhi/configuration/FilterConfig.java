@@ -2,10 +2,12 @@ package com.scfenzhi.configuration;
 
 import com.scfenzhi.filter.EquipmentFilter;
 import com.scfenzhi.filter.AdministratorFilter;
-import com.scfenzhi.filter.OtherFilter;
+import com.scfenzhi.filter.OtherUserFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
 
 @Configuration
 public class FilterConfig {
@@ -19,10 +21,10 @@ public class FilterConfig {
 
 
     @Bean
-    public FilterRegistrationBean<OtherFilter> identityFilterOfOther() {
-        FilterRegistrationBean<OtherFilter> filterRegistrationBean = new FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter(new OtherFilter());
-        filterRegistrationBean.addUrlPatterns("/workbench/*");
+    public FilterRegistrationBean<OtherUserFilter> identityFilterOfOther() {
+        FilterRegistrationBean<OtherUserFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new OtherUserFilter());
+        filterRegistrationBean.addUrlPatterns("/workbench/*","/broadcastData/*");
         return filterRegistrationBean;
     }
 

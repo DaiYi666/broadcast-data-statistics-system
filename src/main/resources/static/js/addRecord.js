@@ -4,8 +4,19 @@ $(function () {
 
     $("#compereId").on("blur", function () {
         let compereId = $(this).val();
-        if (compereId.length === 12) {
-            getCompereNameById(compereId);
+        if (validateCompereId(compereId)) {
+            $.get("/broadcastData/getCompereNameByCompereId", {"compereId": compereId}, function (result) {
+                let commonResult = new CommonResult(result);
+                if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
+                    let option = document.createElement("option");
+                    option.setAttribute("value", commonResult.data);
+                    option.setAttribute("selected", "selected");
+                    option.innerText = commonResult.data;
+                    let compereName = document.getElementById("compereName");
+                    compereName.appendChild(option);
+                    $(compereName).selectpicker("refresh");
+                }
+            });
         }
     });
 
@@ -88,23 +99,6 @@ function validateData(formData) {
         isEffective = false;
     }
     return isEffective;
-}
-
-
-function getCompereNameById(compereId) {
-    $.get("/broadcastData/getCompereNameById", {"compereId": compereId}, function (result) {
-        let commonResult = new CommonResult(result);
-        if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
-            let option = document.createElement("option");
-            option.setAttribute("value", commonResult.data);
-            option.setAttribute("selected", "selected");
-            option.innerText = commonResult.data;
-            let compereName = document.getElementById("compereName");
-            compereName.appendChild(option);
-            $(compereName).selectpicker("refresh");
-        }
-    });
-
 }
 
 

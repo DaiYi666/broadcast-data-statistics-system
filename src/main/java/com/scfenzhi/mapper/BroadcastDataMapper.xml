@@ -4,8 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scfenzhi.mapper.BroadcastDataMapper">
     <sql id="baseColumn">
-        `compere_id`
-        ,
+        `compere_id`,
         `compere_name`,
         `date`,
         `shift`,
@@ -60,5 +59,12 @@
     <select id="getCompereIdList" resultType="string">
         select `compere_id`
         from `compere`
+    </select>
+
+    <select id="getBroadcastDataByCompereId" resultType="broadcastData" parameterType="string">
+        select
+        <include refid="baseColumn"></include>
+        from `broadcast_data`
+        where `compere_id`=#{compereId}
     </select>
 </mapper>

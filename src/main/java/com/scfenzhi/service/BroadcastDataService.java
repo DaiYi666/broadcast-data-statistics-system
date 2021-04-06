@@ -18,4 +18,6 @@ public interface BroadcastDataService {
     CommonResult<Integer> addRecord(BroadcastData broadcastData);
 
     CommonResult<List<BroadcastData>> getAllDataOfThisMonth();
+
+    CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(String compereId);
 }

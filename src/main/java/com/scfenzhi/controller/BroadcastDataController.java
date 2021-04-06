@@ -29,15 +29,19 @@ public class BroadcastDataController {
         return broadcastDataService.addRecord(broadcastData);
     }
 
-    @PostMapping("/getAllDataOfThisMonth")
+    @GetMapping("/getAllDataOfThisMonth")
     public CommonResult<List<BroadcastData>> getAllDataOfThisMonth() {
         return broadcastDataService.getAllDataOfThisMonth();
     }
 
-    @GetMapping(value = "/getCompereNameById")
-    public CommonResult<String> getCompereNameById(String compereId) {
+    @GetMapping(value = "/getCompereNameByCompereId")
+    public CommonResult<String> getCompereNameByCompereId(String compereId) {
         log.info("接收到的参数为：" + compereId);
         return broadcastDataService.getCompereNameById(compereId);
     }
 
+    @GetMapping(value = "/getBroadcastDataByCompereId")
+    public CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(String compereId) {
+        return broadcastDataService.getBroadcastDataByCompereId(compereId);
+    }
 }
