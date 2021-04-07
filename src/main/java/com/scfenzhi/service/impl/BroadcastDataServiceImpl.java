@@ -3,6 +3,7 @@ package com.scfenzhi.service.impl;
 import com.scfenzhi.mapper.BroadcastDataMapper;
 import com.scfenzhi.pojo.BroadcastData;
 import com.scfenzhi.pojo.CommonResult;
+import com.scfenzhi.pojo.Compere;
 import com.scfenzhi.service.BroadcastDataService;
 import com.scfenzhi.utils.DataParser;
 import com.scfenzhi.utils.ResponseCode;
@@ -27,12 +28,12 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
     private BroadcastDataMapper broadcastDataMapper;
 
     @Override
-    public CommonResult<String> getCompereNameById(String compereId) {
-        CommonResult<String> commonResult = new CommonResult<>();
-        String compereName = broadcastDataMapper.getCompereNameById(compereId);
-        if (compereName != null) {
+    public CommonResult<List<Compere>> getCompere(String compereId) {
+        CommonResult<List<Compere>> commonResult = new CommonResult<>();
+        List<Compere> compereList = broadcastDataMapper.getCompere(compereId);
+        if (compereList != null) {
             commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
-            commonResult.setData(compereName);
+            commonResult.setData(compereList);
         } else {
             commonResult.setResponseCode(ResponseCode.FAILED);
         }
@@ -61,7 +62,7 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
     @Override
     public CommonResult<List<BroadcastData>> getAllDataOfThisMonth() {
         CommonResult<List<BroadcastData>> commonResult = new CommonResult<>();
-        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllTheChartDataForThisMonthByShift(null);
+        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllDataOfThisMonth(null, null);
         commonResult.setData(allDataOfThisMonth);
         commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
         return commonResult;
@@ -77,10 +78,10 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
     }
 
     @Override
-    public CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllTheChartDataForThisMonthByShift(String shift) {
+    public CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllChartDataForThisMonth(String shift, String compereId) {
         CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> commonResult = new CommonResult<>();
         commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
-        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllTheChartDataForThisMonthByShift(shift);
+        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllDataOfThisMonth(shift, compereId);
         HashMap<String, ArrayList<HashMap<String, Object>>> resultSet = DataParser.parse(allDataOfThisMonth);
         commonResult.setData(resultSet);
         return commonResult;

@@ -3,7 +3,7 @@ $(function () {
     let data = function () {
         let data = {};
         $.ajax({
-            url: "/broadcastData/getAllTheChartDataForThisMonthByShift",
+            url: "/broadcastData/getAllChartDataOfThisMonth",
             method: "GET",
             dataType: "JSON",
             async: false,

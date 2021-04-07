@@ -27,10 +27,14 @@
         ]]>
   </select>
 
-    <select id="getCompereNameById" parameterType="string" resultType="string">
-        select `compere_name`
+    <select id="getCompere" parameterType="string" resultType="compere">
+        select `compere_id`,`compere_name`
         from `compere`
-        where `compere_id` = #{compereId};
+        <where>
+            <if test="compereId!=null">
+                and `compere_id` = #{compereId}
+            </if>
+        </where>
     </select>
 
     <insert id="addRecord" parameterType="broadcastData">
@@ -49,17 +53,20 @@
     </insert>
 
 
-    <select id="getAllTheChartDataForThisMonthByShift" resultType="broadcastData">
+    <select id="getAllDataOfThisMonth" resultType="broadcastData">
         SELECT
         <include refid="baseColumn"></include>
         FROM `broadcast_data`
         <where>
-            <if test="shift!=null">
-                and `shift`=#{shift}
-            </if>
             <if test="shift==null">
                 and `date`&gt;=(SELECT DATE_ADD(CURDATE(),INTERVAL-DAY(CURDATE())+1 DAY))
                 AND `date`&lt;=(SELECT LAST_DAY(CURDATE()));
+            </if>
+            <if test="shift!=null">
+                and `shift`=#{shift}
+            </if>
+            <if test="compereId!=null">
+                and `compere_id`=#{compereId}
             </if>
         </where>
     </select>

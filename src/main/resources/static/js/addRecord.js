@@ -5,18 +5,37 @@ $(function () {
     $("#compereId").on("blur", function () {
         let compereId = $(this).val();
         if (validateCompereId(compereId)) {
-            $.get("/broadcastData/getCompereNameByCompereId", {"compereId": compereId}, function (result) {
-                let commonResult = new CommonResult(result);
-                if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
-                    let option = document.createElement("option");
-                    option.setAttribute("value", commonResult.data);
-                    option.setAttribute("selected", "selected");
-                    option.innerText = commonResult.data;
-                    let compereName = document.getElementById("compereName");
-                    compereName.appendChild(option);
-                    $(compereName).selectpicker("refresh");
+            $.ajax({
+                url: "/broadcastData/getCompere",
+                data: {"compereId": compereId},
+                dataType: "JSON",
+                success: function (result) {
+                    let commonResult = new CommonResult(result);
+                    if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
+                        let option = document.createElement("option");
+                        option.setAttribute("value", commonResult.data[0].compereName);
+                        option.setAttribute("selected", "selected");
+                        option.innerText = commonResult.data.compereName;
+                        let compereName = document.getElementById("compereName");
+                        compereName.appendChild(option);
+                        $(compereName).selectpicker("refresh");
+                    }
                 }
             });
+
+
+            // $.get("/broadcastData/getCompere", {"compereId": compereId}, function (result) {
+            //     let commonResult = new CommonResult(result);
+            //     if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
+            //         let option = document.createElement("option");
+            //         option.setAttribute("value", commonResult.data);
+            //         option.setAttribute("selected", "selected");
+            //         option.innerText = commonResult.data.compereName;
+            //         let compereName = document.getElementById("compereName");
+            //         compereName.appendChild(option);
+            //         $(compereName).selectpicker("refresh");
+            //     }
+            // });
         }
     });
 

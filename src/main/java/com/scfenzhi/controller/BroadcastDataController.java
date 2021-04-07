@@ -3,6 +3,7 @@ package com.scfenzhi.controller;
 import com.scfenzhi.mapper.BroadcastDataMapper;
 import com.scfenzhi.pojo.BroadcastData;
 import com.scfenzhi.pojo.CommonResult;
+import com.scfenzhi.pojo.Compere;
 import com.scfenzhi.service.BroadcastDataService;
 import com.scfenzhi.utils.DataParser;
 import com.scfenzhi.utils.ResponseCode;
@@ -38,23 +39,24 @@ public class BroadcastDataController {
         return broadcastDataService.getAllDataOfThisMonth();
     }
 
-    @GetMapping(value = "/getCompereNameByCompereId")
-    public CommonResult<String> getCompereNameByCompereId(String compereId) {
+    @GetMapping(value = "/getCompere")
+    public CommonResult<List<Compere>> getCompere(@RequestParam(value = "compereId", required = false) String compereId) {
         log.info("the compereId is：" + compereId);
-        return broadcastDataService.getCompereNameById(compereId);
+        return broadcastDataService.getCompere(compereId);
     }
 
     @GetMapping(value = "/getBroadcastDataByCompereId")
-    public CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(String compereId) {
+    public CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(@RequestParam("compereId") String compereId) {
         log.info("the compereId is：" + compereId);
         return broadcastDataService.getBroadcastDataByCompereId(compereId);
     }
 
 
-    @GetMapping("/getAllTheChartDataForThisMonthByShift")
-    public CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllTheChartDataForThisMonthByShift(@RequestParam(value = "shift", required = false) String shift) {
-        log.info("the shift is:" + shift);
-        return broadcastDataService.getAllTheChartDataForThisMonthByShift(shift);
+    @GetMapping("/getAllChartDataOfThisMonth")
+    public CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllChartDataOfThisMonth(@RequestParam(value = "shift", required = false) String shift, @RequestParam(value = "compereId", required = false) String compereId) {
+        log.info("the shift is:" + shift + ",the compereId is:" + compereId);
+        return broadcastDataService.getAllChartDataForThisMonth(shift, compereId);
     }
+
 
 }

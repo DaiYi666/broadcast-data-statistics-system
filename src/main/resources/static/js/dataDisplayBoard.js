@@ -1,16 +1,44 @@
 $(function () {
 
+    $.ajax({
+        url: "/broadcastData/getCompere",
+        dataType: "JSON",
+        success: function (result) {
+            let commonResult = new CommonResult(result);
+            if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
+                for (let i = 0; i < commonResult.data.length; i++) {
+                    let li = document.createElement("li");
+                    li.setAttribute("compere-id", commonResult.data[i].compereId)
+                    let a = document.createElement("a");
+                    a.setAttribute("href", "#");
+                    a.innerText = commonResult.data[i].compereName;
+                    li.appendChild(a);
+                    document.getElementById("dropdown-menu").appendChild(li);
+                }
+            }
+        }
+    });
+
+
     $(".option").on("click", function () {
         $(this).addClass("active").siblings("li").removeClass("active");
         let option = $(this).children("a").text();
         if (option === "本月综合") {
             $("#window").attr("src", "/admin/comprehensiveOfThisMonth.html");
         } else if (option === "本月排行榜") {
-            $("#window").attr("src", "https://www.baidu.com");
+            $("#window").attr("src", "/admin/rankList.html");
         } else {
             $("#window").attr("src", "/admin/displayByShift.html");
         }
 
+    });
+
+    $("#search").on("submit", function () {
+        if (validateCompereId($("#compereId").val())) {
+            $(".option").removeClass("active");
+            // $("#window").attr("src", "/workbench/search.html");
+        }
+        return false;
     });
 
 

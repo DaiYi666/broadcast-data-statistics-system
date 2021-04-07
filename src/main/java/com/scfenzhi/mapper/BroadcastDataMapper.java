@@ -25,7 +25,7 @@ public interface BroadcastDataMapper {
      * @param compereId 主播id
      * @return 根据主播id查询主播姓名
      */
-    String getCompereNameById(@Param("compereId") String compereId);
+    List<Compere> getCompere(@Param("compereId") String compereId);
 
     /**
      * @return 获取所有主播的id
@@ -41,7 +41,7 @@ public interface BroadcastDataMapper {
     /**
      * @return 本月所有的数据
      */
-    List<BroadcastData> getAllTheChartDataForThisMonthByShift(@Param("shift") String shift);
+    List<BroadcastData> getAllDataOfThisMonth(@Param("shift") String shift, @Param("compereId") String compereId);
 
     /**
      * @param compereId 主播id
