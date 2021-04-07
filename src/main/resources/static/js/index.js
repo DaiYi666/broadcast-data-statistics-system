@@ -32,7 +32,11 @@ $(function () {
                 success: function (result) {
                     let commonResult = new CommonResult(result);
                     if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
-                        location.href = "/workbench/workbench-main.html";
+                        if (commonResult.data === UserType.ADMINISTRATOR) {
+                            location.href = "/admin/dataDisplayBoard.html";
+                        } else {
+                            location.href = "/workbench/workbench-main.html";
+                        }
                     } else if (commonResult.responseCode === ResponseCode.FAILED) {
                         password.addClass("input-error");
                     } else {

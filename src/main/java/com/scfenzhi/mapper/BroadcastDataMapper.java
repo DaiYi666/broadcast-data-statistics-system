@@ -41,7 +41,7 @@ public interface BroadcastDataMapper {
     /**
      * @return 本月所有的数据
      */
-    List<BroadcastData> getAllDataOfThisMonth();
+    List<BroadcastData> getAllTheChartDataForThisMonthByShift(@Param("shift") String shift);
 
     /**
      * @param compereId 主播id

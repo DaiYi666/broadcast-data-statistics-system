@@ -21,12 +21,12 @@ public class OtherUserFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user != null) {
-            filterChain.doFilter(servletRequest, servletResponse);
-            log.info("其他用户登录，用户类型为：" + user.getUserType());
-        } else {
-            log.info("未登录");
+        if (user == null) {
             ((HttpServletResponse) servletResponse).sendRedirect("/index.html");
+            log.warn("not logged in");
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
+            log.info("is logged in" + user);
         }
     }
 }

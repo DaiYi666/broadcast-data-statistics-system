@@ -168,3 +168,20 @@ function createDataRow(data, isShowOption) {
     alert.appendChild(row);
     document.getElementById("table").appendChild(alert);
 }
+
+
+
+
+function parseResultSet(resultSet) {
+    let array = [];
+    for (let index in resultSet) {
+        if (resultSet.hasOwnProperty(index)) {
+            let result = {
+                name: resultSet[index].name,
+                data: resultSet[index].data
+            };
+            array.push(result);
+        }
+    }
+    return array;
+}

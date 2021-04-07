@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scfenzhi.mapper.BroadcastDataMapper">
     <sql id="baseColumn">
-        `compere_id`,
+        `compere_id`
+        ,
         `compere_name`,
         `date`,
         `shift`,
@@ -48,12 +49,19 @@
     </insert>
 
 
-    <select id="getAllDataOfThisMonth" resultType="broadcastData">
+    <select id="getAllTheChartDataForThisMonthByShift" resultType="broadcastData">
         SELECT
         <include refid="baseColumn"></include>
         FROM `broadcast_data`
-        WHERE `date`&gt;=(SELECT DATE_ADD(CURDATE(),INTERVAL-DAY(CURDATE())+1 DAY))
-        AND `date`&lt;=(SELECT LAST_DAY(CURDATE()));
+        <where>
+            <if test="shift!=null">
+                and `shift`=#{shift}
+            </if>
+            <if test="shift==null">
+                and `date`&gt;=(SELECT DATE_ADD(CURDATE(),INTERVAL-DAY(CURDATE())+1 DAY))
+                AND `date`&lt;=(SELECT LAST_DAY(CURDATE()));
+            </if>
+        </where>
     </select>
 
     <select id="getCompereIdList" resultType="string">

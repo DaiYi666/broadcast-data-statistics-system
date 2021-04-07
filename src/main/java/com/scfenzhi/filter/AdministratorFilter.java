@@ -22,13 +22,13 @@ public class AdministratorFilter implements Filter {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            log.info("未登录");
+            log.warn("not logged in");
             ((HttpServletResponse) servletResponse).sendRedirect("/index.html");
         } else if (UserType.ADMINISTRATOR.equals(user.getUserType())) {
-            log.info("管理员用户登录，用户类型为："+user.getUserType());
+            log.info(user.toString());
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            log.info("其他用户登录，用户类型为："+user.getUserType());
+            log.info("not ths administrator" + user);
         }
     }
 }

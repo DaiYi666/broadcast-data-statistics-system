@@ -4,11 +4,14 @@ import com.scfenzhi.mapper.BroadcastDataMapper;
 import com.scfenzhi.pojo.BroadcastData;
 import com.scfenzhi.pojo.CommonResult;
 import com.scfenzhi.service.BroadcastDataService;
+import com.scfenzhi.utils.DataParser;
 import com.scfenzhi.utils.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -58,7 +61,7 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
     @Override
     public CommonResult<List<BroadcastData>> getAllDataOfThisMonth() {
         CommonResult<List<BroadcastData>> commonResult = new CommonResult<>();
-        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllDataOfThisMonth();
+        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllTheChartDataForThisMonthByShift(null);
         commonResult.setData(allDataOfThisMonth);
         commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
         return commonResult;
@@ -70,6 +73,16 @@ public class BroadcastDataServiceImpl implements BroadcastDataService {
         List<BroadcastData> broadcastDataList = broadcastDataMapper.getBroadcastDataByCompereId(compereId);
         commonResult.setData(broadcastDataList);
         commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllTheChartDataForThisMonthByShift(String shift) {
+        CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> commonResult = new CommonResult<>();
+        commonResult.setResponseCode(ResponseCode.SUCCESSFUL);
+        List<BroadcastData> allDataOfThisMonth = broadcastDataMapper.getAllTheChartDataForThisMonthByShift(shift);
+        HashMap<String, ArrayList<HashMap<String, Object>>> resultSet = DataParser.parse(allDataOfThisMonth);
+        commonResult.setData(resultSet);
         return commonResult;
     }
 

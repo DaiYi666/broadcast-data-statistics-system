@@ -5,6 +5,8 @@ import com.scfenzhi.pojo.CommonResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,4 +22,6 @@ public interface BroadcastDataService {
     CommonResult<List<BroadcastData>> getAllDataOfThisMonth();
 
     CommonResult<List<BroadcastData>> getBroadcastDataByCompereId(String compereId);
+
+    CommonResult<HashMap<String, ArrayList<HashMap<String, Object>>>> getAllTheChartDataForThisMonthByShift(String shift);
 }
