@@ -1,19 +1,4 @@
 $(function () {
-
-    // $.get("/broadcastData/getBroadcastDataByCompereId", {"compereId": $("#compereId", window.parent.document).val()}, function (result) {
-    //     console.log(result)
-    //     let commonResult = new CommonResult(result);
-    //     console.log(commonResult);
-    //     if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
-    //         let commonResult = new CommonResult(result);
-    //         for (let index in commonResult.data) {
-    //             if (commonResult.data.hasOwnProperty(index)) {
-    //                 createDataRow(commonResult.data[index], true);
-    //             }
-    //         }
-    //     }
-    // });
-
     $.ajax({
         url: "/broadcastData/getBroadcastDataByCompereId",
         data: {"compereId": $("#compereId", window.parent.document).val()},
@@ -55,8 +40,6 @@ $(function () {
                 close(); // 调用返回的 关闭弹框函数 才能关闭
             }
         });
-
-
     });
 });
 

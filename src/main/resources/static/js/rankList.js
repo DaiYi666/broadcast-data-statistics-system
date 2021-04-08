@@ -4,7 +4,6 @@ $(function () {
         let data = {};
         $.ajax({
             url: "/broadcastData/getAllChartDataOfThisMonth",
-            data: {"compereId": $(".checked", window.parent.document).attr("compere-id")},
             method: "GET",
             dataType: "JSON",
             async: false,
@@ -18,7 +17,6 @@ $(function () {
         return data;
     }();
 
-
     //支付订单
     (function () {
         let resultSet = processData(data.paidOrders);
@@ -27,7 +25,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '支付订单排行榜'
+                text: '支付订单'
             },
             tooltip: {
                 trigger: 'axis',
@@ -68,7 +66,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '支付金额排行榜'
+                text: '支付金额'
             },
             tooltip: {
                 trigger: 'axis',
@@ -109,7 +107,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '订单UV排行榜'
+                text: '订单UV'
             },
             tooltip: {
                 trigger: 'axis',
@@ -150,7 +148,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '下单PV排行榜'
+                text: '下单PV'
             },
             tooltip: {
                 trigger: 'axis',
@@ -191,7 +189,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '新增关注排行榜'
+                text: '新增关注'
             },
             tooltip: {
                 trigger: 'axis',
@@ -232,7 +230,7 @@ $(function () {
         let echarts = window.echarts.init(container);
         let option = {
             title: {
-                text: '直播间分享排行榜'
+                text: '直播间分享'
             },
             tooltip: {
                 trigger: 'axis',

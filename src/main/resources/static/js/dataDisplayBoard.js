@@ -9,6 +9,7 @@ $(function () {
                 for (let i = 0; i < commonResult.data.length; i++) {
                     let li = document.createElement("li");
                     li.setAttribute("compere-id", commonResult.data[i].compereId)
+                    li.classList.add("compere");
                     let a = document.createElement("a");
                     a.setAttribute("href", "#");
                     a.innerText = commonResult.data[i].compereName;
@@ -17,6 +18,12 @@ $(function () {
                 }
             }
         }
+    });
+
+    $("#dropdown-menu").on("click", ".compere", function () {
+        $(".option").removeClass("active");
+        $(this).addClass("checked").siblings("li").removeClass("checked");
+        $("#window").attr("src", "/admin/comperePersonalPage.html");
     });
 
 
