@@ -1,7 +1,6 @@
 package com.scfenzhi.filter;
 
 import com.scfenzhi.pojo.User;
-import com.scfenzhi.utils.UserType;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;

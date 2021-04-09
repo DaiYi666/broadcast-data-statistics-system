@@ -1,14 +1,10 @@
 package com.scfenzhi.controller;
 
-import com.scfenzhi.mapper.BroadcastDataMapper;
 import com.scfenzhi.pojo.BroadcastData;
 import com.scfenzhi.pojo.CommonResult;
 import com.scfenzhi.pojo.Compere;
 import com.scfenzhi.service.BroadcastDataService;
-import com.scfenzhi.utils.DataParser;
-import com.scfenzhi.utils.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
