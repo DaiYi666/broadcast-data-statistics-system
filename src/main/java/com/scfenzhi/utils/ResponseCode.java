@@ -30,4 +30,12 @@ public class ResponseCode {
      */
     public static final int REPEAT_ADD = 302;
 
+    /**
+     * 重复添加
+     */
+    public static final int PARAMETER_INVALID = 305;
+
+
+
+
 }

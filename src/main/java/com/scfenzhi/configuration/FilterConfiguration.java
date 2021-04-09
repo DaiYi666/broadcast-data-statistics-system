@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 
 @Configuration
-public class FilterConfig {
+public class FilterConfiguration {
     @Bean
     public FilterRegistrationBean<EquipmentFilter> requestResFilter() {
         FilterRegistrationBean<EquipmentFilter> filterRegistrationBean = new FilterRegistrationBean<>();

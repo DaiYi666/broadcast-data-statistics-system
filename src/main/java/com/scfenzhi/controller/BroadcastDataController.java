@@ -9,6 +9,7 @@ import com.scfenzhi.utils.DataParser;
 import com.scfenzhi.utils.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@Validated
 @RequestMapping("/broadcastData")
 public class BroadcastDataController {
 
@@ -57,6 +59,4 @@ public class BroadcastDataController {
         log.info("the shift is:" + shift + ",the compereId is:" + compereId);
         return broadcastDataService.getAllChartDataForThisMonth(shift, compereId);
     }
-
-
 }

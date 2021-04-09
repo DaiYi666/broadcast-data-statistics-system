@@ -15,33 +15,18 @@ $(function () {
                         let option = document.createElement("option");
                         option.setAttribute("value", commonResult.data[0].compereName);
                         option.setAttribute("selected", "selected");
-                        option.innerText = commonResult.data.compereName;
+                        option.innerText = commonResult.data[0].compereName;
                         let compereName = document.getElementById("compereName");
                         compereName.appendChild(option);
                         $(compereName).selectpicker("refresh");
                     }
                 }
             });
-
-
-            // $.get("/broadcastData/getCompere", {"compereId": compereId}, function (result) {
-            //     let commonResult = new CommonResult(result);
-            //     if (commonResult.responseCode === ResponseCode.SUCCESSFUL) {
-            //         let option = document.createElement("option");
-            //         option.setAttribute("value", commonResult.data);
-            //         option.setAttribute("selected", "selected");
-            //         option.innerText = commonResult.data.compereName;
-            //         let compereName = document.getElementById("compereName");
-            //         compereName.appendChild(option);
-            //         $(compereName).selectpicker("refresh");
-            //     }
-            // });
         }
     });
 
 
     $("#addRecord").on("submit", function () {
-
         let formData = {
             compereId: $("#compereId").val(),
             compereName: $("#compereName").val(),
@@ -54,7 +39,6 @@ $(function () {
             increasedAttention: $("#increasedAttention").val(),
             shareStudio: $("#shareStudio").val()
         };
-
 
         if (validateData(formData)) {
             $.ajax({
@@ -102,11 +86,8 @@ $(function () {
                 }
             });
         }
-
         return false;
     });
-
-
 });
 
 

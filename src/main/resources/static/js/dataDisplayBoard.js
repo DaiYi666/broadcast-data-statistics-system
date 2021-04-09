@@ -41,9 +41,23 @@ $(function () {
     });
 
     $("#search").on("submit", function () {
-        if (validateCompereId($("#compereId").val())) {
+
+        let compere = $("#compereId");
+        let compereId = compere.val();
+        if (validateCompereId(compereId)) {
             $(".option").removeClass("active");
-            // $("#window").attr("src", "/workbench/search.html");
+            let compereIdArray = [];
+            let comperes = $("#dropdown-menu>.compere");
+            for (let i = 0; i < comperes.length; i++) {
+                compereIdArray.push(comperes[i].getAttribute("compere-id"));
+            }
+
+            for (let id of compereIdArray) {
+                if (id === compereId) {
+                    let compereName = $(".compere[compere-id='" + compereId + "']").trigger("click").children("a").text();
+                    compere.val(compereName);
+                }
+            }
         }
         return false;
     });
