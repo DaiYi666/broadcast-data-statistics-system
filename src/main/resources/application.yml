@@ -13,9 +13,9 @@ spring:
 
   datasource:
     username: root
-    password: 5e065db8d7d39ea1
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.119.156.184:6548/broadcast_data_statistics_system?useSsl=true&serverTimeZone=UTC&useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatement=true
+    url: jdbc:mysql://localhost:3306/broadcast_data_statistics_system?useSsl=true&serverTimeZone=UTC&useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatement=true
 mybatis:
   mapper-locations: com/scfenzhi/mapper/*.xml
   type-aliases-package: com.scfenzhi.pojo
